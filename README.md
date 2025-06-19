@@ -1,3 +1,3 @@
 # Read me
 
-GitHub and intellij's test connection teste
+GitHub and intellij's test connection 
