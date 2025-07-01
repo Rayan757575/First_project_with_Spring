@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Anime;
+import com.example.demo.exception.BadRequestException;
 import com.example.demo.mapper.anime.AnimeMapper;
 import com.example.demo.repository.AnimeRepository;
 import com.example.demo.requests.anime.AnimePostRequestBody;
@@ -28,7 +29,7 @@ public class AnimeService {
 
     public Anime findByIdOrThrowBadRequestException(Long id){
         return animeRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
+                .orElseThrow(() -> new BadRequestException("Anime not Found"));
     }
 
     public Anime save(AnimePostRequestBody animePostRequestBody) {
