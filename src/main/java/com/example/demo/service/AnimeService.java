@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Anime;
+import com.example.demo.mapper.anime.AnimeMapper;
 import com.example.demo.repository.AnimeRepository;
 import com.example.demo.requests.anime.AnimePostRequestBody;
 import com.example.demo.requests.anime.AnimePutRequestBody;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AnimeService {
     private final AnimeRepository animeRepository;
+    private final AnimeMapper animeMapper;
 
     public List<Anime> listAll(){
         return animeRepository.findAll();
@@ -26,7 +28,7 @@ public class AnimeService {
     }
 
     public Anime save(AnimePostRequestBody animePostRequestBody) {
-         Anime anime = Anime.builder().name(animePostRequestBody.getName()).build();
+        Anime anime = animeMapper.toAnime(animePostRequestBody);
         return animeRepository.save(anime);
     }
 
@@ -36,10 +38,8 @@ public class AnimeService {
 
     public void replace(AnimePutRequestBody animePutRequestBody) {
         Anime savedAnime = findByIdOrThrowBadRequestException(animePutRequestBody.getId());
-        Anime anime = Anime.builder()
-                .id(savedAnime.getId())
-                .name(animePutRequestBody.getName())
-                .build();
+        Anime anime = AnimeMapper.INSTANCE.toAnime(animePutRequestBody);
+        anime.setId(savedAnime.getId());
         animeRepository.save(anime);
     }
 }
