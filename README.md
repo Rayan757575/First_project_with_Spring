@@ -1,4 +1,3 @@
-````markdown
 # Anime API
 
 API REST desenvolvida com Spring Boot para gerenciamento de entidades `Anime`.
