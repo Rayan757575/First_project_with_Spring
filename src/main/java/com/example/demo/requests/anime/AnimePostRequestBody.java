@@ -1,7 +1,6 @@
 package com.example.demo.requests.anime;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
