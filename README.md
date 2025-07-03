@@ -64,33 +64,7 @@ spring.datasource.password=root
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-### 4. Compile o projeto
-
-Execute o seguinte comando para compilar o projeto:
-
-```bash
-./mvnw clean install
-```
-
-Se estiver usando Windows:
-
-```bash
-mvnw.cmd clean install
-```
-
-### 5. Execute a aplicação
-
-Para iniciar o servidor Spring Boot, utilize:
-
-```bash
-./mvnw spring-boot:run
-```
-
-Ou, no Windows:
-
-```bash
-mvnw.cmd spring-boot:run
-```
+### 4. Compile o projeto e execute a aplicação
 
 A API estará acessível em:
 
