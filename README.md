@@ -24,8 +24,8 @@ API REST desenvolvida com Spring Boot para gerenciamento de entidades `Anime`.
 Execute os comandos abaixo para clonar este repositório localmente:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/Rayan757575/First_project_with_Spring.git
+cd First_project_with_Spring
 ````
 
 ### 2. Suba o banco de dados com Docker Compose
