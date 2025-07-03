@@ -34,9 +34,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         );
     }
 
-    protected ResponseEntity<Object> handMethodArgumentNotValidException(
-            MethodArgumentNotValidException ex, @Nullable Object body ,HttpHeaders headers, HttpStatus status, WebRequest request ) {
-        List<FieldError> fieldErrors=  ex.getBindingResult().getFieldErrors();
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ValidationExceptionDetails> handMethodArgumentNotValidException(MethodArgumentNotValidException exception ){
+        List<FieldError> fieldErrors=  exception.getBindingResult().getFieldErrors();
         String fields =  fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
         String fieldsMessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
 
@@ -46,13 +46,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                         .status(HttpStatus.BAD_REQUEST.value())
                         .title("Bad Request Exception, Invalid Fields")
                         .detail("Check the field(s) error")
-                        .developerMessage(ex.getClass().getName())
+                        .developerMessage(exception.getClass().getName())
                         .fields(fields)
                         .fieldsMessage(fieldsMessage)
                         .build(), HttpStatus.BAD_REQUEST
         );
     }
-
 
     protected ResponseEntity<Object> handleExceptionInternal(
             Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
