@@ -8,6 +8,7 @@ import com.example.demo.requests.anime.AnimePostRequestBody;
 import com.example.demo.requests.anime.AnimePutRequestBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class AnimeService {
                 .orElseThrow(() -> new BadRequestException("Anime not Found"));
     }
 
+    @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) {
         Anime anime = animeMapper.toAnime(animePostRequestBody);
         return animeRepository.save(anime);
