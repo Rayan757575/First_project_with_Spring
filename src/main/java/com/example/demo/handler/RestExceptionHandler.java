@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<BadRequestExceptionDetails> handleBadRequestException(BadRequestException bre){
+    public ResponseEntity<BadRequestExceptionDetails> handleBadRequestException(BadRequestException bre) {
         return new ResponseEntity<>(
                 BadRequestExceptionDetails.builder()
                         .timeStamp(LocalDateTime.now())
@@ -33,37 +33,38 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                         .build(), HttpStatus.BAD_REQUEST
         );
     }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ValidationExceptionDetails> handMethodArgumentNotValidException(MethodArgumentNotValidException exception ){
-        List<FieldError> fieldErrors=  exception.getBindingResult().getFieldErrors();
-        String fields =  fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
-        String fieldsMessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
-
-        return new ResponseEntity<>(
-                ValidationExceptionDetails.builder()
-                        .timeStamp(LocalDateTime.now())
-                        .status(HttpStatus.BAD_REQUEST.value())
-                        .title("Bad Request Exception, Invalid Fields")
-                        .detail("Check the field(s) error")
-                        .developerMessage(exception.getClass().getName())
-                        .fields(fields)
-                        .fieldsMessage(fieldsMessage)
-                        .build(), HttpStatus.BAD_REQUEST
-        );
-    }
-
-    protected ResponseEntity<Object> handleExceptionInternal(
-            Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
-
-        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
-                .timeStamp(LocalDateTime.now())
-                .status(HttpStatus.BAD_REQUEST.value())
-                .title(ex.getMessage())
-                .detail(ex.getMessage())
-                .developerMessage(ex.getClass().getName())
-                .build();
-
-        return new ResponseEntity<>(exceptionDetails, headers, status);
-    }
 }
+//
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    public ResponseEntity<ValidationExceptionDetails> handMethodArgumentNotValidException(MethodArgumentNotValidException exception ){
+//        List<FieldError> fieldErrors=  exception.getBindingResult().getFieldErrors();
+//        String fields =  fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
+//        String fieldsMessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
+//
+//        return new ResponseEntity<>(
+//                ValidationExceptionDetails.builder()
+//                        .timeStamp(LocalDateTime.now())
+//                        .status(HttpStatus.BAD_REQUEST.value())
+//                        .title("Bad Request Exception, Invalid Fields")
+//                        .detail("Check the field(s) error")
+//                        .developerMessage(exception.getClass().getName())
+//                        .fields(fields)
+//                        .fieldsMessage(fieldsMessage)
+//                        .build(), HttpStatus.BAD_REQUEST
+//        );
+//    }
+//
+//    protected ResponseEntity<Object> handleExceptionInternal(
+//            Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+//
+//        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+//                .timeStamp(LocalDateTime.now())
+//                .status(HttpStatus.BAD_REQUEST.value())
+//                .title(ex.getMessage())
+//                .detail(ex.getMessage())
+//                .developerMessage(ex.getClass().getName())
+//                .build();
+//
+//        return new ResponseEntity<>(exceptionDetails, headers, status);
+//    }
+//}
