@@ -109,8 +109,3 @@ Com isso, o MapStruct poderá gerar automaticamente os mapeadores `*Impl` durant
 
 ---
 
-## ✍️ Autor
-
-Rayan Cata Preta
-
----
