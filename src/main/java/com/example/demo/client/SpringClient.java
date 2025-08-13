@@ -35,6 +35,7 @@ public class SpringClient {
         log.info("anime saved {} ", samuraiChamplooSaved);
 
         Anime animeToBeUpdated = samuraiChamplooSaved.getBody();
+        assert animeToBeUpdated != null;
         animeToBeUpdated.setName("Samurai Champloo 2");
 
         //Rest Template Put using exchange
