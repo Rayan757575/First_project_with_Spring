@@ -45,7 +45,7 @@ public class SpringClient {
                 Void.class);
         log.info(samuraiChamplooUpdated);
 
-        //Rest Template Put using exchange
+        //Rest Template Delete using exchange
         ResponseEntity<Void> samuraiChamplooDeleted = new RestTemplate().exchange("https://localhost/animes/{id}",
                 HttpMethod.DELETE,
                 null,
