@@ -7,4 +7,5 @@ import lombok.Data;
 public class AnimePostRequestBody {
     @NotEmpty(message = "The name of this anime can not be empty")
     private String name;
+    // there isn't the id attribute  because it is auto increment
 }
